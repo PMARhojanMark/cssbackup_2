@@ -148,12 +148,11 @@ if(isset($_POST['save_student']))
     $query = "INSERT INTO cadet (afpsn,servid,majid,yrgr,oyrgr,lname,fname,aname,mname,initls,gender,bdate
     ,bplace,papa,padead,mama,madead,guardian,addr1,addr2,zipcode,region,highsch,height,eescore
     ,math,engl,spma,coy,battalion,battalion2,cstat,remarks,dateadmitted,dategrad,datecomm,degree,majorin
-    ,graduate,latinaward,password,coybat) 
-
+    ,graduate,latinaward,password,coybat)
     VALUES ('$afpsn','$servid','$majid','$yrgr','$oyrgr','$lname','$fname','$aname','$mname','$initls','$gender','$bdate'
     ,'$bplace','$papa','$padead','$mama','$madead','$guardian','$addr1','$addr2','$zipcode','$region','$highsch','$height','$eescore'
     ,'$math','$engl','$spma','$coy','$battalion','$battalion2','$cstat','$remarks','$dateadmitted','$dategrad','$datecomm','$degree','$majorin'
-    ,'$graduate','$latinaward','$password','$coybat');
+    ,'$graduate','$latinaward','$password','$coybat')";
 
     
     if (mysqli_query($conn, $query)){

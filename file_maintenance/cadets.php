@@ -45,10 +45,10 @@ if(!isset($_SESSION['user_name'])){
                     File Maintenance
                     <i class="uil uil-arrow-right rotate"></i>
                     <ul class="sublink"></li>
-                        <li><a href="file_maintenance/cadets/cadets.php">Cadets</a></li>
-                        <li><a href="file_maintenance/department/department.php">Department</a></li>
-                        <li><a href="/cssbackup/file_maintenance/faculty/faculty.php">Faculty</a></li>
-                        <li><a href="file_maintenance/course/course.php">Course</a></li>
+                        <li><a href="cadets.php">Cadets</a></li>
+                        <li><a href="department.php">Department</a></li>
+                        <li><a href="faculty.php">Faculty</a></li>
+                        <li><a href="course.php">Course</a></li>
                     </ul>
                 </li>
                 <li class="main-link">
@@ -122,7 +122,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('facultyconfig.php'); ?>
+<?php include('cadetsconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -130,8 +130,8 @@ if(!isset($_SESSION['user_name'])){
             <div class="card-header">
                 <h4>
                     <i class="uil uil-clock-three"></i>
-                    <span class="text">Faculty</span>
-                    <a href="faculty-create.php" class="btn btn-primary float-end">Add Faculty</a>
+                    <span class="text">Cadets</span>
+                    <a href="cadets-create.php" class="btn btn-primary float-end">Add Cadets</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -186,63 +186,63 @@ if(!isset($_SESSION['user_name'])){
                     </thead>
                     <tbody>
                         <?php 
-                            $query = "SELECT * FROM faculty";
+                            $query = "SELECT * FROM cadet";
                             $query_run = mysqli_query($conn, $query);
 
                             if(mysqli_num_rows($query_run) > 0)
                             {
-                                foreach($query_run as $faculty)
+                                foreach($query_run as $cadet)
                                 {
                                     ?>
                                     <tr>
-                                        <td><?= $faculty['afpsn']; ?></td>
-                                        <td><?= $faculty['servid']; ?></td>
-                                        <td><?= $faculty['majid']; ?></td>
-                                        <td><?= $faculty['yrgr']; ?></td>
-                                        <td><?= $faculty['oyrgr']; ?></td>
-                                        <td><?= $faculty['lname']; ?></td>
-                                        <td><?= $faculty['fname']; ?></td>
-                                        <td><?= $faculty['aname']; ?></td>
-                                        <td><?= $faculty['mname']; ?></td>
-                                        <td><?= $faculty['initls']; ?></td>
-                                        <td><?= $faculty['gender']; ?></td>
-                                        <td><?= $faculty['bdate']; ?></td>
-                                        <td><?= $faculty['bplace']; ?></td>
-                                        <td><?= $faculty['papa']; ?></td>
-                                        <td><?= $faculty['padead']; ?></td>
-                                        <td><?= $faculty['mama']; ?></td>
-                                        <td><?= $faculty['madead']; ?></td>
-                                        <td><?= $faculty['guardian']; ?></td>
-                                        <td><?= $faculty['addr1']; ?></td>
-                                        <td><?= $faculty['addr2']; ?></td>
-                                        <td><?= $faculty['zipcode']; ?></td>
-                                        <td><?= $faculty['region']; ?></td>
-                                        <td><?= $faculty['highsch']; ?></td>
-                                        <td><?= $faculty['height']; ?></td>
-                                        <td><?= $faculty['eescore']; ?></td>
-                                        <td><?= $faculty['math']; ?></td>
-                                        <td><?= $faculty['engl']; ?></td>
-                                        <td><?= $faculty['spma']; ?></td>
-                                        <td><?= $faculty['coy']; ?></td>
-                                        <td><?= $faculty['battalion']; ?></td>
-                                        <td><?= $faculty['battalion2']; ?></td>
-                                        <td><?= $faculty['cstat']; ?></td>
-                                        <td><?= $faculty['remarks']; ?></td>
-                                        <!-- <td><?= $faculty['pix']; ?></td> -->
-                                        <td><?= $faculty['dateadmitted']; ?></td>
-                                        <td><?= $faculty['dategrad']; ?></td>
-                                        <td><?= $faculty['datecomm']; ?></td>
-                                        <td><?= $faculty['degree']; ?></td>
-                                        <td><?= $faculty['majorin']; ?></td>
-                                        <td><?= $faculty['graduate']; ?></td>
-                                        <td><?= $faculty['latinaward']; ?></td>
-                                        <td><?= $faculty['password']; ?></td>
-                                        <td><?= $faculty['coybat']; ?></td>
+                                        <td><?= $cadet['afpsn']; ?></td>
+                                        <td><?= $cadet['servid']; ?></td>
+                                        <td><?= $cadet['majid']; ?></td>
+                                        <td><?= $cadet['yrgr']; ?></td>
+                                        <td><?= $cadet['oyrgr']; ?></td>
+                                        <td><?= $cadet['lname']; ?></td>
+                                        <td><?= $cadet['fname']; ?></td>
+                                        <td><?= $cadet['aname']; ?></td>
+                                        <td><?= $cadet['mname']; ?></td>
+                                        <td><?= $cadet['initls']; ?></td>
+                                        <td><?= $cadet['gender']; ?></td>
+                                        <td><?= $cadet['bdate']; ?></td>
+                                        <td><?= $cadet['bplace']; ?></td>
+                                        <td><?= $cadet['papa']; ?></td>
+                                        <td><?= $cadet['padead']; ?></td>
+                                        <td><?= $cadet['mama']; ?></td>
+                                        <td><?= $cadet['madead']; ?></td>
+                                        <td><?= $cadet['guardian']; ?></td>
+                                        <td><?= $cadet['addr1']; ?></td>
+                                        <td><?= $cadet['addr2']; ?></td>
+                                        <td><?= $cadet['zipcode']; ?></td>
+                                        <td><?= $cadet['region']; ?></td>
+                                        <td><?= $cadet['highsch']; ?></td>
+                                        <td><?= $cadet['height']; ?></td>
+                                        <td><?= $cadet['eescore']; ?></td>
+                                        <td><?= $cadet['math']; ?></td>
+                                        <td><?= $cadet['engl']; ?></td>
+                                        <td><?= $cadet['spma']; ?></td>
+                                        <td><?= $cadet['coy']; ?></td>
+                                        <td><?= $cadet['battalion']; ?></td>
+                                        <td><?= $cadet['battalion2']; ?></td>
+                                        <td><?= $cadet['cstat']; ?></td>
+                                        <td><?= $cadet['remarks']; ?></td>
+                                        <!-- <td><?= $cadet['pix']; ?></td> -->
+                                        <td><?= $cadet['dateadmitted']; ?></td>
+                                        <td><?= $cadet['dategrad']; ?></td>
+                                        <td><?= $cadet['datecomm']; ?></td>
+                                        <td><?= $cadet['degree']; ?></td>
+                                        <td><?= $cadet['majorin']; ?></td>
+                                        <td><?= $cadet['graduate']; ?></td>
+                                        <td><?= $cadet['latinaward']; ?></td>
+                                        <td><?= $cadet['password']; ?></td>
+                                        <td><?= $cadet['coybat']; ?></td>
                                         <td>
-                                            <a href="faculty-view.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="faculty-edit.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-success btn-sm">Edit</a>
-                                            <form action="faculty.php" method="POST" class="d-inline">
-                                                <button type="submit" name="delete_student" value="<?=$faculty['faculty_id'];?>" class="btn btn-danger btn-sm">Delete</button>
+                                            <a href="cadets-view.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="cadets-edit.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <form action="cadets.php" method="POST" class="d-inline">
+                                                <button type="submit" name="delete_student" value="<?=$cadet['cadet_id'];?>" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
