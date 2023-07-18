@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,16 +22,16 @@ require 'dbcon.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Student View Details 
-                            <a href="faculty.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\cadets.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
 
                         <?php
-                        if(isset($_GET['faculty_id']))
+                        if(isset($_GET['cadet_id']))
                         {
-                            $faculty_id = mysqli_real_escape_string($conn, $_GET['faculty_id']);
-                            $query = "SELECT * FROM faculty WHERE faculty_id='$faculty_id' ";
+                            $cadet_id = mysqli_real_escape_string($conn, $_GET['cadet_id']);
+                            $query = "SELECT * FROM cadet WHERE cadet_id='$cadet_id' ";
                             $query_run = mysqli_query($conn, $query);
 
                             if(mysqli_num_rows($query_run) > 0)
@@ -40,9 +40,33 @@ require 'dbcon.php';
                                 ?>
                                 
                                     <div class="mb-3">
-                                        <label>SERIALNR</label>
+                                        <label>APFSN</label>
                                         <p class="form-control">
-                                            <?=$student['serialnr'];?>
+                                            <?=$student['afpsn'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>SERVID</label>
+                                        <p class="form-control">
+                                            <?=$student['servid'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>MAJID</label>
+                                        <p class="form-control">
+                                            <?=$student['majid'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>YRGR</label>
+                                        <p class="form-control">
+                                            <?=$student['yrgr'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>OYRGR</label>
+                                        <p class="form-control">
+                                            <?=$student['oyrgr'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
@@ -58,15 +82,21 @@ require 'dbcon.php';
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>MI</label>
-                                        <p class="form-control">
-                                            <?=$student['mi'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
                                         <label>ANAME</label>
                                         <p class="form-control">
                                             <?=$student['aname'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>MNAME</label>
+                                        <p class="form-control">
+                                            <?=$student['mname'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>INITLS</label>
+                                        <p class="form-control">
+                                            <?=$student['initls'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
@@ -76,68 +106,182 @@ require 'dbcon.php';
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>DEPTCODE</label>
+                                        <label>BDATE</label>
                                         <p class="form-control">
-                                            <?=$student['deptcode'];?>
+                                            <?=$student['bdate'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>IGROUP</label>
+                                        <label>BPLACE</label>
                                         <p class="form-control">
-                                            <?=$student['igroup'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>ITYPE</label>
-                                        <p class="form-control">
-                                            <?=$student['itype'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>RANKS</label>
-                                        <p class="form-control">
-                                            <?=$student['ranks'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>BROFSERV</label>
-                                        <p class="form-control">
-                                            <?=$student['brofserv'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>STATUS</label>
-                                        <p class="form-control">
-                                            <?=$student['status'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>PIX</label>
-                                        <p class="form-control">
-                                            <?=$student['pix'];?>
-                                        </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>UNAME</label>
-                                        <p class="form-control">
-                                            <?=$student['uname'];?>
+                                            <?=$student['bplace'];?>
                                         </p>
                                     </div><div class="mb-3">
-                                        <label>PWD</label>
+                                        <label>PAPA</label>
                                         <p class="form-control">
-                                            <?=$student['pwd'];?>
+                                            <?=$student['papa'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>LVL</label>
+                                        <label>PADEAD</label>
                                         <p class="form-control">
-                                            <?=$student['lvl'];?>
+                                            <?=$student['padead'];?>
                                         </p>
                                     </div>
                                     <div class="mb-3">
-                                        <label>ACTIVE</label>
+                                        <label>MAMA</label>
                                         <p class="form-control">
-                                            <?=$student['active'];?>
+                                            <?=$student['mama'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>MADEAD</label>
+                                        <p class="form-control">
+                                            <?=$student['madead'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>GUARDIAN</label>
+                                        <p class="form-control">
+                                            <?=$student['guardian'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>ADDR1</label>
+                                        <p class="form-control">
+                                            <?=$student['addr1'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>ADDR2</label>
+                                        <p class="form-control">
+                                            <?=$student['addr2'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>ZIPCODE</label>
+                                        <p class="form-control">
+                                            <?=$student['zipcode'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>REGION</label>
+                                        <p class="form-control">
+                                            <?=$student['region'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>HIGHSCH</label>
+                                        <p class="form-control">
+                                            <?=$student['highsch'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>HEIGHT</label>
+                                        <p class="form-control">
+                                            <?=$student['height'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>EESCORE</label>
+                                        <p class="form-control">
+                                            <?=$student['eescore'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>MATH</label>
+                                        <p class="form-control">
+                                            <?=$student['math'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>ENGL</label>
+                                        <p class="form-control">
+                                            <?=$student['engl'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>SPMA</label>
+                                        <p class="form-control">
+                                            <?=$student['spma'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>COY</label>
+                                        <p class="form-control">
+                                            <?=$student['coy'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>BATTALION</label>
+                                        <p class="form-control">
+                                            <?=$student['battalion'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>CSTAT</label>
+                                        <p class="form-control">
+                                            <?=$student['cstat'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>REMARKS</label>
+                                        <p class="form-control">
+                                            <?=$student['remarks'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>DATEADMITTED</label>
+                                        <p class="form-control">
+                                            <?=$student['dateadmitted'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>DATEGRAD</label>
+                                        <p class="form-control">
+                                            <?=$student['dategrad'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>DATECOMM</label>
+                                        <p class="form-control">
+                                            <?=$student['datecomm'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>DEGREE</label>
+                                        <p class="form-control">
+                                            <?=$student['degree'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>MAJORIN</label>
+                                        <p class="form-control">
+                                            <?=$student['majorin'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>GRADUATE</label>
+                                        <p class="form-control">
+                                            <?=$student['graduate'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>LATINAWARD</label>
+                                        <p class="form-control">
+                                            <?=$student['latinaward'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>PASSWORD</label>
+                                        <p class="form-control">
+                                            <?=$student['password'];?>
+                                        </p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>COYBAT</label>
+                                        <p class="form-control">
+                                            <?=$student['coybat'];?>
                                         </p>
                                     </div>
 

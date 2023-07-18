@@ -1,8 +1,10 @@
 <?php
 session_start();
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 
+<?php
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,21 +21,21 @@ require 'dbcon.php';
   
     <div class="container mt-5">
 
-        <?php include('message.php'); ?>
+        <?php include('..\message.php'); ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Department 
-                            <a href="department.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\department.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
 
                     
 
                     <div class="card-body">
-                        <form action="department.php" method="post">
+                        <form action="..\department.php" method="post" target="_parent">
 
                             <div class="mb-3">
                                 <label>DEPTCODE</label>

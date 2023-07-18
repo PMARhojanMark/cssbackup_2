@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 
 <!doctype html>
@@ -19,14 +19,14 @@ require 'dbcon.php';
   
     <div class="container mt-5">
 
-        <?php include('message.php'); ?>
+    <?php require_once("..\message.php"); ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Edit 
-                            <a href="department.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\department.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@ require 'dbcon.php';
                             {
                                 $student = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="department.php" method="POST">
+                                <form action="..\department.php" method="POST">
                                     <input type="hidden" name="department_id" value="<?= $student['department_id']; ?>">
 
                                     <div class="mb-3">

@@ -122,7 +122,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('facultyconfig.php'); ?>
+<?php include('faculty\facultyconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -131,7 +131,7 @@ if(!isset($_SESSION['user_name'])){
                 <h4>
                     <i class="uil uil-clock-three"></i>
                     <span class="text">Faculty</span>
-                    <a href="faculty-create.php" class="btn btn-primary float-end">Add Faculty</a>
+                    <a href="faculty/faculty-create.php" class="btn btn-primary float-end">Add Faculty</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -178,17 +178,32 @@ if(!isset($_SESSION['user_name'])){
                                         <td><?= $faculty['deptcode']; ?></td>
                                         <td><?= $faculty['igroup']; ?></td>
                                         <td><?= $faculty['itype']; ?></td>
-                                        <td><?= $faculty['ranks']; ?></td>
+                                        <td><?= $faculty['rank']; ?></td>
                                         <td><?= $faculty['brofserv']; ?></td>
                                         <td><?= $faculty['status']; ?></td>
-                                        <td><img src="<?php echo asset('uploads/profile/' . $faculty->pix); ?>" alt="image"></td>
+
+                                        <td>
+                                            <?php 
+                                                $sql = "SELECT * FROM faculty ORDER BY faculty_id";
+                                                $res = mysqli_query($conn,  $sql);
+
+                                                if (mysqli_num_rows($res) > 0) {
+                                                    while ($images = mysqli_fetch_assoc($res)) {  ?>
+                                                    
+                                                    <div class="alb">
+                                                        <img src="../image/<?=$images['pix']?>">
+                                                    </div>
+                                            <?php } }?>
+                                        </td>
+
+                                        <!-- <td><img src="<?php echo asset('uploads/profile/' . $faculty->pix); ?>" alt="image"></td> -->
                                         <td><?= $faculty['uname']; ?></td>
                                         <td><?= $faculty['pwd']; ?></td>
                                         <td><?= $faculty['lvl']; ?></td>
                                         <td><?= $faculty['active']; ?></td>
                                         <td>
-                                            <a href="faculty-view.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="faculty-edit.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="faculty/faculty-view.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="faculty/faculty-edit.php?faculty_id=<?= $faculty['faculty_id']; ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form action="faculty.php" method="POST" class="d-inline">
                                                 <button type="submit" name="delete_student" value="<?=$faculty['faculty_id'];?>" class="btn btn-danger btn-sm">Delete</button>
                                             </form>

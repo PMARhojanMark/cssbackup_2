@@ -1,5 +1,4 @@
 <?php
-
 $connection = "localhost";
 $username = "root";
 $password = "";

@@ -1,13 +1,13 @@
 <?php
 
-require 'dbcon.php';
+require_once("..\dbcon.php");
 
 
 if(isset($_POST['delete_student']))
 {
     $student_id = mysqli_real_escape_string($conn, $_POST['delete_student']);
 
-    $query = "DELETE FROM faculty WHERE id='$student_id' ";
+    $query = "DELETE FROM faculty WHERE faculty_id='$student_id' ";
     $query_run = mysqli_query($conn, $query);
 
     if (mysqli_query($conn, $query)){
@@ -32,7 +32,7 @@ if(isset($_REQUEST['update_student']))
     $deptcode = mysqli_real_escape_string($conn, $_REQUEST['deptcode']);
     $igroup = mysqli_real_escape_string($conn, $_REQUEST['igroup']);
     $itype = mysqli_real_escape_string($conn, $_REQUEST['itype']);
-    $ranks = mysqli_real_escape_string($conn, $_REQUEST['ranks']);
+    $ranks = mysqli_real_escape_string($conn, $_REQUEST['rank']);
     $brofserv = mysqli_real_escape_string($conn, $_REQUEST['brofserv']);
     $status = mysqli_real_escape_string($conn, $_REQUEST['status']);
     $pix = mysqli_real_escape_string($conn, $_REQUEST['pix']);
@@ -43,7 +43,7 @@ if(isset($_REQUEST['update_student']))
 
 
     $query = "UPDATE faculty SET serialnr='$serialnr', lname='$lname', fname='$fname', mi='$mi', aname='$aname', 
-    gender='$gender', deptcode='$deptcode', igroup='$igroup', itype='$itype', ranks='$ranks', brofserv='$brofserv',
+    gender='$gender', deptcode='$deptcode', igroup='$igroup', itype='$itype', rank='$ranks', brofserv='$brofserv',
     status='$status', pix='$pix', uname='$uname', pwd='$pwd', lvl='$lvl', active='$active'
     WHERE faculty_id='$faculty_id'";
     $query_run = mysqli_query($conn, $query);
@@ -62,7 +62,7 @@ if(isset($_REQUEST['update_student']))
 ?>
 
 <?php
-if(isset($_POST['save_student']))
+if(isset($_POST['save_student']) && isset($_FILES['my_image']))
 {
     $serialnr = mysqli_real_escape_string($conn, $_POST['serialnr']);
     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
@@ -73,7 +73,7 @@ if(isset($_POST['save_student']))
     $deptcode = mysqli_real_escape_string($conn, $_POST['deptcode']);
     $igroup = mysqli_real_escape_string($conn, $_POST['igroup']);
     $itype = mysqli_real_escape_string($conn, $_POST['itype']);
-    $ranks = mysqli_real_escape_string($conn, $_POST['ranks']);
+    $ranks = mysqli_real_escape_string($conn, $_POST['rank']);
     $brofserv = mysqli_real_escape_string($conn, $_POST['brofserv']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $pix = mysqli_real_escape_string($conn, $_POST['pix']);
@@ -82,10 +82,51 @@ if(isset($_POST['save_student']))
     $lvl = mysqli_real_escape_string($conn, $_POST['lvl']);
     $active = mysqli_real_escape_string($conn, $_POST['active']);
 
-    $query = "INSERT INTO faculty (serialnr,lname,fname,mi,aname,gender,deptcode,igroup,itype,ranks,brofserv,
+    $query = "INSERT INTO faculty (serialnr,lname,fname,mi,aname,gender,deptcode,igroup,itype,rank,brofserv,
     status,pix,uname,pwd,lvl,active) 
     VALUES ('$serialnr','$lname','$fname','$mi','$aname','$gender','$deptcode','$igroup','$itype','$ranks',
     '$brofserv','$status','$pix','$uname','$pwd','$lvl','$active')";
+
+if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
+
+	$img_name = $_FILES['my_image']['name'];
+	$img_size = $_FILES['my_image']['size'];
+	$tmp_name = $_FILES['my_image']['tmp_name'];
+	$error = $_FILES['my_image']['error'];
+
+	if ($error === 0) {
+		if ($img_size > 125000) {
+			$em = "Sorry, your file is too large.";
+		    header("Location: file_maintenance/faculty/faculty-create.php?error=$em");
+		}else {
+			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+			$img_ex_lc = strtolower($img_ex);
+
+			$allowed_exs = array("jpg", "jpeg", "png"); 
+
+			if (in_array($img_ex_lc, $allowed_exs)) {
+				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+				$img_upload_path = 'image/'.$new_img_name;
+				move_uploaded_file($tmp_name, $img_upload_path);
+
+				// Insert into Database
+				$sql = "INSERT INTO faculty(pix) 
+				        VALUES('$new_img_name')";
+				mysqli_query($conn, $sql);
+				header("Location: faculty.php");
+			}else {
+				$em = "You can't upload files of this type";
+		        header("Location: file_maintenance/faculty/faculty-create?error=$em");
+			}
+		}
+	}else {
+		$em = "unknown error occurred!";
+		header("Location: index.php?error=$em");
+	}
+
+}else {
+	header("Location: index.php");
+}
     
     if (mysqli_query($conn, $query)){
         $_SESSION['message'] = "Student Created Successfully";
@@ -99,51 +140,51 @@ if(isset($_POST['save_student']))
 }
 
 
-if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
+// if (isset($_POST['submit']) && isset($_FILES['my_image'])) {
 
 
-	echo "<pre>";
-	print_r($_FILES['my_image']);
-	echo "</pre>";
+// 	echo "<pre>";
+// 	print_r($_FILES['my_image']);
+// 	echo "</pre>";
 
-	$img_name = $_FILES['my_image']['name'];
-	$img_size = $_FILES['my_image']['size'];
-	$tmp_name = $_FILES['my_image']['tmp_name'];
-	$error = $_FILES['my_image']['error'];
+// 	$img_name = $_FILES['my_image']['name'];
+// 	$img_size = $_FILES['my_image']['size'];
+// 	$tmp_name = $_FILES['my_image']['tmp_name'];
+// 	$error = $_FILES['my_image']['error'];
 
-	if ($error === 0) {
-		if ($img_size > 125000) {
-			$em = "Sorry, your file is too large.";
-      echo "<script>window.location.href = 'faculty-create.php'?error=$em;</script>";
-		}else {
-			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-			$img_ex_lc = strtolower($img_ex);
+// 	if ($error === 0) {
+// 		if ($img_size > 125000) {
+// 			$em = "Sorry, your file is too large.";
+//       echo "<script>window.location.href = 'faculty-create.php'?error=$em;</script>";
+// 		}else {
+// 			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+// 			$img_ex_lc = strtolower($img_ex);
 
-			$allowed_exs = array("jpg", "jpeg", "png"); 
+// 			$allowed_exs = array("jpg", "jpeg", "png"); 
 
-			if (in_array($img_ex_lc, $allowed_exs)) {
-				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-				$img_upload_path = 'image/'.$new_img_name;
-				move_uploaded_file($tmp_name, $img_upload_path);
+// 			if (in_array($img_ex_lc, $allowed_exs)) {
+// 				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+// 				$img_upload_path = 'image/'.$new_img_name;
+// 				move_uploaded_file($tmp_name, $img_upload_path);
 
-				// Insert into Database
-				$sql = "INSERT INTO faculty (pix) 
-				        VALUES('$new_img_name')";
-				mysqli_query($conn, $sql);
-				echo "<script>window.location.href = 'faculty-view.php'?error=$em;</script>";
-			}else {
-				$em = "You can't upload files of this type";
-		        echo "<script>window.location.href = 'faculty-create.php'?error=$em;</script>";
-			}
-		}
-	}else {
-		$em = "unknown error occurred!";
-		echo "<script>window.location.href = 'faculty.php'?error=$em;</script>";
-	}
+// 				// Insert into Database
+// 				$sql = "INSERT INTO faculty (pix) 
+// 				        VALUES('$new_img_name')";
+// 				mysqli_query($conn, $sql);
+// 				echo "<script>window.location.href = 'faculty-view.php'?error=$em;</script>";
+// 			}else {
+// 				$em = "You can't upload files of this type";
+// 		        echo "<script>window.location.href = 'faculty-create.php'?error=$em;</script>";
+// 			}
+// 		}
+// 	}else {
+// 		$em = "unknown error occurred!";
+// 		echo "<script>window.location.href = 'faculty.php'?error=$em;</script>";
+// 	}
 
-}else {
+// }else {
 	
-}
+// }
 
 
   

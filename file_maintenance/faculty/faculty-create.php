@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 
 <!doctype html>
@@ -19,21 +19,21 @@ require 'dbcon.php';
   
     <div class="container mt-5">
 
-        <?php include('message.php'); ?>
+        <?php include('..\message.php'); ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Add 
-                            <a href="faculty.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\faculty.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
 
                     
 
                     <div class="card-body">
-                        <form action="faculty.php"
+                        <form action="..\faculty.php"
                         name="myForm"
                         method="post"
                         enctype="multipart/form-data"
@@ -78,7 +78,7 @@ require 'dbcon.php';
                             </div>
                             <div class="mb-3">
                                 <label>RANKS</label>
-                                <input type="text" name="ranks" id="ranks" class="form-control" required>
+                                <input type="text" name="rank" id="rank" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label>BROFSERV</label>
@@ -88,10 +88,18 @@ require 'dbcon.php';
                                 <label>STATUS</label>
                                 <input type="text" name="status" id="status" class="form-control" required>
                             </div>
-                            <div class="mb-3">
+                            
+                            <div>
+                            <label>sdfaf</label>
+                            <input type="file" name="my_image"  id="my_image">
+                            </div>
+                            
+                            <!-- <div class="mb-3">
                                  <label>PIX</label>
                                 <input type="file" name="my_image" accept="image/*" required>
-                            </div>
+                            </div> -->
+
+
                             <div class="mb-3">
                                 <label>UNAME</label>
                                 <input type="text" name="uname" id="uname" class="form-control" required>

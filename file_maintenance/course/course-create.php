@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 
 <!doctype html>
@@ -19,21 +19,22 @@ require 'dbcon.php';
   
     <div class="container mt-5">
 
-        <?php include('message.php'); ?>
+       
+        <?php require_once("..\message.php"); ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Course 
-                            <a href="course.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\course.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
 
                     
 
                     <div class="card-body">
-                        <form action="course.php" method="post">
+                        <form action="..\course.php" method="post">
 
                             <div class="mb-3">
                                 <label>CCODE</label>

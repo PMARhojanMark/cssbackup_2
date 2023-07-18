@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 
 <!doctype html>
@@ -13,20 +13,20 @@ require 'dbcon.php';
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Student Edit</title>
+    <title>Course Edit</title>
 </head>
 <body>
   
     <div class="container mt-5">
 
-        <?php include('message.php'); ?>
+        <?php require_once("..\message.php"); ?>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Student Edit 
-                            <a href="course.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\course.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@ require 'dbcon.php';
                             {
                                 $student = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="course.php" method="POST">
+                                <form action="..\course.php" method="POST">
                                     <input type="hidden" name="course_id" value="<?= $student['course_id']; ?>">
 
                                     <div class="mb-3">

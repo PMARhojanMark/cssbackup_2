@@ -1,13 +1,13 @@
 <?php
 
-require 'dbcon.php';
+require_once("..\dbcon.php");
 
 
 if(isset($_POST['delete_student']))
 {
     $student_id = mysqli_real_escape_string($conn, $_POST['delete_student']);
 
-    $query = "DELETE FROM department WHERE id='$student_id' ";
+    $query = "DELETE FROM department WHERE department_id='$student_id' ";
     $query_run = mysqli_query($conn, $query);
 
     if (mysqli_query($conn, $query)){

@@ -1,21 +1,21 @@
 <?php
 
-require 'dbcon.php';
+require_once("..\dbcon.php");
 
 
 if(isset($_POST['delete_student']))
 {
     $student_id = mysqli_real_escape_string($conn, $_POST['delete_student']);
 
-    $query = "DELETE FROM cadet WHERE id='$student_id' ";
+    $query = "DELETE FROM cadet WHERE cadet_id='$student_id' ";
     $query_run = mysqli_query($conn, $query);
 
     if (mysqli_query($conn, $query)){
-        $_SESSION['message'] = "Student delete Successfully";
+        $_SESSION['message'] = "Cadet Deleted Successfully";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     } else {
-        $_SESSION['message'] = "Student Not deleted ";
+        $_SESSION['message'] = "Cadet Not Deleted ";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     }
@@ -70,7 +70,7 @@ if(isset($_REQUEST['update_student']))
 
     $query = "UPDATE cadet SET afpsn='$afpsn', servid='$servid', majid='$majid',
      yrgr='$yrgr', oyrgr='$oyrgr', lname='$lname', 
-      fname='$fname', aname='$aname', mname='$mname' 
+      fname='$fname', aname='$aname', mname='$mname', 
       initls='$initls', gender='$gender', bdate='$bdate',
       bplace='$bplace', papa='$papa', padead='$padead',
       mama='$mama', madead='$madead', guardian='$guardian',
@@ -82,15 +82,15 @@ if(isset($_REQUEST['update_student']))
       dateadmitted='$dateadmitted', dategrad='$dategrad',
       datecomm='$datecomm', degree='$degree', majorin='$majorin',
       graduate='$graduate', latinaward='$latinaward', password='$password',
-      coybat='$coybat', WHERE course_id='$cadet_id' ";
+      coybat='$coybat' WHERE cadet_id='$cadet_id' ";
     $query_run = mysqli_query($conn, $query);
 
     if (mysqli_query($conn, $query)){
-        $_SESSION['message'] = "Student updated Successfully";
+        $_SESSION['message'] = "Cadet Edited Successfully";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     } else {
-        $_SESSION['message'] = "Student Not updated";
+        $_SESSION['message'] = "Cadet Not Edited";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     }
@@ -156,11 +156,11 @@ if(isset($_POST['save_student']))
 
     
     if (mysqli_query($conn, $query)){
-        $_SESSION['message'] = "Student Created Successfully";
+        $_SESSION['message'] = "Cadet Created Successfully";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     } else {
-        $_SESSION['message'] = "Student Not Created";
+        $_SESSION['message'] = "Cadet Not Created";
         echo "<script>window.location.href = 'cadets.php';</script>";
         exit(0);
     }

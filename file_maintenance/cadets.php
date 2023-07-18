@@ -122,7 +122,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('cadetsconfig.php'); ?>
+<?php include('cadets\cadetsconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -131,7 +131,7 @@ if(!isset($_SESSION['user_name'])){
                 <h4>
                     <i class="uil uil-clock-three"></i>
                     <span class="text">Cadets</span>
-                    <a href="cadets-create.php" class="btn btn-primary float-end">Add Cadets</a>
+                    <a href="cadets/cadets-create.php" class="btn btn-primary float-end">Add Cadets</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -239,8 +239,8 @@ if(!isset($_SESSION['user_name'])){
                                         <td><?= $cadet['password']; ?></td>
                                         <td><?= $cadet['coybat']; ?></td>
                                         <td>
-                                            <a href="cadets-view.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="cadets-edit.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="cadets/cadets-view.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="cadets/cadets-edit.php?cadet_id=<?= $cadet['cadet_id']; ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form action="cadets.php" method="POST" class="d-inline">
                                                 <button type="submit" name="delete_student" value="<?=$cadet['cadet_id'];?>" class="btn btn-danger btn-sm">Delete</button>
                                             </form>

@@ -123,7 +123,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('courseconfig.php'); ?>
+<?php include('course\courseconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -132,7 +132,7 @@ if(!isset($_SESSION['user_name'])){
                 <h4>
                     <i class="uil uil-briefcase-alt deplogo"></i>
                     <span class="text">Course</span>
-                    <a href="course-create.php" class="btn btn-primary float-end">Add Course</a>
+                    <a href="course/course-create.php" class="btn btn-primary float-end">Add Course</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -173,8 +173,8 @@ if(!isset($_SESSION['user_name'])){
                                         <td><?= $course['cadd2']; ?></td>
                                         <td><?= $course['ctypeold']; ?></td>
                                         <td>
-                                            <a href="course-view.php?course_id=<?= $course['course_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="course-edit.php?course_id=<?= $course['course_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="course/course-view.php?course_id=<?= $course['course_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="course/course-edit.php?course_id=<?= $course['course_id']; ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form action="course.php" method="POST" class="d-inline">
                                                 <button type="submit" name="delete_student" value="<?=$course['course_id'];?>" class="btn btn-danger btn-sm">Withdraw</button>
                                             </form>

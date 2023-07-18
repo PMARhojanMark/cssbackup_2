@@ -122,7 +122,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('deptconfig.php'); ?>
+<?php include('department\deptconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -131,7 +131,7 @@ if(!isset($_SESSION['user_name'])){
                 <h4>
                     <i class="uil uil-briefcase-alt deplogo"></i>
                     <span class="text">Department</span>
-                    <a href="dept-create.php" class="btn btn-primary float-end">Add Department</a>
+                    <a href="department/dept-create.php" class="btn btn-primary float-end">Add Department</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -162,8 +162,8 @@ if(!isset($_SESSION['user_name'])){
                                         <td><?= $dept['depthead']; ?></td>
                                         <td><?= $dept['deptgroup']; ?></td>
                                         <td>
-                                            <a href="dept-view.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="dept-edit.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <a href="department/dept-view.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="department/dept-edit.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-success btn-sm">Edit</a>
                                             <form action="department.php" method="POST" class="d-inline">
                                                 <button type="submit" name="delete_student" value="<?=$dept['department_id'];?>" class="btn btn-danger btn-sm">Withdraw</button>
                                             </form>

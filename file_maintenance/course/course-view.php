@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once("..\dbcon.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +22,7 @@ require 'dbcon.php';
                 <div class="card">
                     <div class="card-header">
                         <h4>Student View Details 
-                            <a href="course.php" class="btn btn-danger float-end">BACK</a>
+                            <a href="..\course.php" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
